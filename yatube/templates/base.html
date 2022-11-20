@@ -1,4 +1,4 @@
-{%load static%}
+{% load static %}
 <!DOCTYPE html> <!-- Используется html 5 версии -->
 <html lang="ru"> <!-- Язык сайта - русский -->
   <head>    
@@ -17,12 +17,12 @@
     <title> {% block title %}Тайтла нет{% endblock title %}</title>
     {% include 'includes/header.html' %}
     </head>
-    <body>
-    
+    <body>    
       <!-- класс py-5 создает отступы сверху и снизу блока -->
-      <div class="container py-5">
+    <div class="container py-5">
       {%block content %}
-        пока что пусто
+        <h1>{{group.title}}</h1>
+        <h2>{{group.description}}</h2>
       {% endblock %}
       </div>
     </main>

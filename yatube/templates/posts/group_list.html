@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{%load static%}
+{% load static %}
 {% block content %}
 <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
 <title>    
@@ -10,21 +10,18 @@
 <header> 
   <h1>{{group_title}}</h1>
 </header>
-<h1>Лев Толстой – зеркало русской революции.</h1>
-        <p>
-          Группа тайных поклонников графа.
-          {% for post in posts %}
-          <ul>
-            <li>
-              Автор: {{ post.author.get_full_name }}
-            </li>
-            <li>
-              Дата публикации: {{ post.pub_date|date:"d E Y" }}
-            </li>
-          </ul>
-          <p>{{ post.text }}</p>
-          {%if not forloop.last%}
-            <hr>
-          {% endif %}
-          {% endfor %}
+{% for post in posts %}
+        <ul>
+          <li>
+            Автор: {{ post.author.get_full_name }}
+          </li>
+          <li>
+            Дата публикации: {{ post.pub_date|date:"d E Y" }}
+          </li>
+        </ul>
+        <p>{{ post.text }}</p>
+        {%if not forloop.last%}
+          <hr>
+        {% endif %}
+      {% endfor %}
 {% endblock content %}
