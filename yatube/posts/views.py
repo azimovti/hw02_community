@@ -12,10 +12,11 @@ def index(request):
 
 
 def group_posts(request, slug):
+    quant_posts = 10
 
     group = get_object_or_404(Group, slug=slug)
 
-    posts = Post.objects.filter(group=group).order_by('-pub_date')[:10]
+    posts = Post.objects.all()[:quant_posts]
     context = {
         'group': group,
         'posts': posts,
