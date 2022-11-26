@@ -4,6 +4,7 @@ from .models import Post, Group
 
 quant_posts = 10
 
+
 def index(request):
     posts = Post.objects.order_by('-pub_date')[:quant_posts]
     context = {
@@ -13,9 +14,10 @@ def index(request):
 
 
 def group_posts(request, slug):
-    
+
     group = get_object_or_404(Group, slug=slug)
 
     posts = Post.objects.all()[:quant_posts]
-    
-    return render(request, 'posts/group_list.html', {'posts':posts,'grous':group})
+
+    return render(request, 'posts/group_list.html',
+                  {'posts': posts, 'grous': group})
