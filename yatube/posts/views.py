@@ -6,7 +6,7 @@ quant_posts = 10
 
 
 def index(request):
-    posts = Post.objects.order_by('-pub_date')[:quant_posts]
+    posts = Post.objects.all
     context = {
         'posts': posts,
     }
