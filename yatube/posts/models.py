@@ -28,9 +28,9 @@ class Post(models.Model):
     )
     group = models.ForeignKey(
         Group,
-        related_name='Group',
         on_delete=models.SET_NULL,
         blank=True, null=True,
+        related_name='posts'
     )
 
     class Meta:

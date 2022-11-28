@@ -6,7 +6,7 @@ quant_posts = 10
 
 
 def index(request):
-    posts = Post.objects.all
+    posts = Post.objects.all()[:quant_posts]
     context = {
         'posts': posts,
     }
@@ -17,7 +17,7 @@ def group_posts(request, slug):
 
     group = get_object_or_404(Group, slug=slug)
 
-    posts = Post.objects.all()[:quant_posts]
-
+    posts = group.posts.all()[:quant_posts]
+#Post.objects.all()[:quant_posts]
     return render(request, 'posts/group_list.html',
                   {'posts': posts, 'grous': group})
