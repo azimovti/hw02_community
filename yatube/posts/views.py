@@ -18,6 +18,6 @@ def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
 
     posts = group.posts.all()[:quant_posts]
-#Post.objects.all()[:quant_posts]
+
     return render(request, 'posts/group_list.html',
                   {'posts': posts, 'grous': group})
