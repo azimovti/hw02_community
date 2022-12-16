@@ -1,4 +1,4 @@
-from django.contrib.auth.views import LogoutView, LoginView
+from django.contrib.auth.views import LogoutView, LoginView, PasswordResetView
 
 from django.urls import path
 
@@ -13,4 +13,5 @@ urlpatterns = [
          name='logout'),
     path('login/', LoginView.as_view(template_name='users/login.html'),
          name='login'),
+    path('login/password_reset_form/', views.PasswordResetView.as_view(), name = 'password_reset_form'),
 ]
