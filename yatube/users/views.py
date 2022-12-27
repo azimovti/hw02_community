@@ -1,10 +1,5 @@
-
-
-
 from django.views.generic import CreateView
-
 from django.urls import reverse_lazy
-
 from . forms import CreationForm
 
 
@@ -15,6 +10,5 @@ class SignUp(CreateView):
 
 class PasswordResetView(CreateView):
     form_class = CreationForm
-
-
+    template_name = 'users/password_reset_form'
 

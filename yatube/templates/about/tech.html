@@ -1,8 +1,10 @@
 {% extends "base.html" %}
+{%load static%}
 {% block title %}Технологии{% endblock %}
 {% block content %}
 {% comment %} Колонки с отступом сверху и снизу {% endcomment %}
 <div class="row">
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
   <h1>Вот что я умею</h1>
   {% comment %}
     Боковой блок со списком технологий 
@@ -25,7 +27,7 @@
     и 75% при размерах экрана ≥768px
   {% endcomment %}
   <article class="col-12 col-md-9">
-    <p>Текст страницы "Технологии"</p>
+    <p>Текст страницы "Технологии" проверка отображения текста в несколько строк</p>
   </article>
 </div>
 {% endblock %} 

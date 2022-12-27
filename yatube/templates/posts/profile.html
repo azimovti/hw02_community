@@ -1,53 +1,59 @@
 <!DOCTYPE html>
+{%load static%}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<meta charset="utf-8">
+<link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/fav/favicon-16x16.png'%}">
 <html lang="ru"> 
   <head>  
-    <!-- Подключены иконки, стили и заполенены мета теги -->
-    <title>{% block title %}Профайл пользователя {{  username }} {% endblock title %} </title>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <title>{% block title %}Профайл пользователя {{ author.get_full_name }} {% endblock title %} </title>
   </head>
   <body>       
     <header>
-      <nav class="navbar navbar-light" style="background-color: lightskyblue">
-        <div class="container">
-          <a class="navbar-brand" href="/">
-            <img src="/static/img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            <span style="color:red">Ya</span>tube
-          </a>
-        </div>
-      </nav>      
+      {% include 'includes/header.html' %}
     </header>
     <main>
       <div class="container py-5">        
-        <h1>Все посты пользователя {{ username }} </h1>
-        <h3>Всего постов: {{user.posts.all.count}} </h3>   
+        <h1>Все посты пользователя {{ author.get_full_name }} </h1>
+        <h3>Всего постов: {{author.posts.all.count}} </h3>   
         <article>
           <ul>
             <li>
-              Автор: {{ username }}
-              <a href="<!-- -->">все посты пользователя </a>
+              Автор {{ author.username }}:
+              <a href={{author.posts}}>все посты пользователя </a>
             </li>
             <li>
-              Дата публикации: {{ post.pub_date|date:"d E Y" }}
+              Дата публикации: {{ author.posts.last.pub_date|date:"d E Y" }}
             </li>
           </ul>
           <p>
-            {{post.text}}
+            <h6>Последний пост:</h6>
           </p>
+          <p> {{posts.author.last}}</p>
           <a href="<!-- -->">подробная информация </a>
         </article>       
-        <a href="<!-- -->">все записи группы</a>        
+        <a href="{{ posts.group}}">все записи группы</a>
+        <hr>
+        <h6> Все посты автора: </h6>
+        {% for post in page_obj %}
+        <ul>
+          <li>
+            Дата публикации: {{ post.pub_date|date:"d E Y" }}
+          </li>
+        </ul>
         
-        {%if not forloop.last%} 
+        <p>{{ author.posts.all }}</p>
+        
+        {%if not forloop.last%}
           <hr>
         {% endif %}
-        {% for post in page_obj %}
-
-        {%endfor%}  
-      </div>
+      {% endfor %}
+        </a>
+        {% include 'posts/includes/paginator.html' %}   
+        </div>
     </main>
-    <footer class="border-top text-center py-3">
-      <p>© <!--2021 --> Copyright <span style="color:red">Ya</span>tube</p>    
+    <footer
+      {% include 'includes/footer.html' %}    
     </footer>
   </body>
 </html> 
-
-

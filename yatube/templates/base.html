@@ -3,6 +3,7 @@
 <html lang="ru">
   {% load static %}
   <link rel="stylesheet" href="css/bootstrap.min.css">
+  
   <head>    
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,17 +13,19 @@
     <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/fav/favicon-16x16.png'%}">
     <meta name="msapplication-TileColor" content="#000">
     <meta name="theme-color" content="#ffffff">
-    
-    
+        
     <title>{%block title %}Тайтла нет{% endblock %}</title>
     {% include 'includes/header.html' %}
     </head>
     <body>
     <div class="container py-5">
       {%block content %}
+        
+              
         <h1>{{group.title}}</h1>
         <h2>{{group.description}}</h2>
-      {% endblock %}
+            
+        {% endblock %}
       </div>
     </main>
  
