@@ -15,24 +15,20 @@
     <main>
       <div class="container py-5">        
         <h1>Все посты пользователя {{ author.get_full_name }} </h1>
-        <h3>Всего постов: {{author.posts.all.count}} </h3>   
+        
+        <h3>Всего постов: {{author.posts.all.count}} </h3> 
         <article>
-          <ul>
-            <li>
-              Автор {{ author.username }}:
-              <a href={{author.posts}}>все посты пользователя </a>
-            </li>
-            <li>
-              Дата публикации: {{ author.posts.last.pub_date|date:"d E Y" }}
-            </li>
-          </ul>
+          
           <p>
             <h6>Последний пост:</h6>
           </p>
-          <p> {{posts.author.last}}</p>
-          <a href="<!-- -->">подробная информация </a>
+          <li>
+            Дата публикации: {{ posts.first.pub_date|date:"d E Y" }}
+          </li>
+          <p> {{posts.first.text}}</p>
+          
         </article>       
-        <a href="{{ posts.group}}">все записи группы</a>
+        
         <hr>
         <h6> Все посты автора: </h6>
         {% for post in page_obj %}
@@ -41,14 +37,18 @@
             Дата публикации: {{ post.pub_date|date:"d E Y" }}
           </li>
         </ul>
+        <p>{{ post.text}}</p>
+        {% if post.group %}  
+        <a href="{% url 'posts:group_posts' post.group.slug %}">все записи группы</a>
+        {%else%}
+        Пост без группы
+        {%endif%}
+        <p>
+          <a href="{% url 'posts:post_detail' post.pk %}">подробная информация </a>
+        </p>
+          {%if not forloop.last%} <hr> {% endif %}
+        {% endfor %}
         
-        <p>{{ author.posts.all }}</p>
-        
-        {%if not forloop.last%}
-          <hr>
-        {% endif %}
-      {% endfor %}
-        </a>
         {% include 'posts/includes/paginator.html' %}   
         </div>
     </main>

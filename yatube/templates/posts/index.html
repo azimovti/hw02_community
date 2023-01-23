@@ -11,7 +11,8 @@
 </head>
 
   <h1>{{main_title}}</h1>
-   
+
+
   {% for post in page_obj %}
   <ul>
     <li>
@@ -20,6 +21,7 @@
     <li>
       Дата публикации: {{ post.pub_date|date:"d E Y" }}
     </li>
+    
   </ul>
 <p>{{ post.text }}</p>
 {%if post.group%}  
